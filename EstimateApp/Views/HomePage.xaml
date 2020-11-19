@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" x:Class="EstimateApp.Views.HomePage">
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   FontSize="25"
+                   TextColor="#696969">
+                Estimate App
+            </Label>
+
+            <forms:AnimationView
+                Grid.Row="1"
+                Animation="background.json"
+                AnimationSource="AssetOrBundle"
+                RepeatMode="Infinite"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand" />
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>
