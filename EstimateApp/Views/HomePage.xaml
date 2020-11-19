@@ -14,7 +14,7 @@
                    VerticalOptions="End"
                    FontSize="25"
                    TextColor="#696969">
-                Estimate App
+                Estimate App 1.0
             </Label>
 
             <forms:AnimationView
