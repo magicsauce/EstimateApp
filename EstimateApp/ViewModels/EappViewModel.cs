@@ -270,28 +270,6 @@ namespace EstimateApp.ViewModels
             }
         }
 
-        private double dynamicParagraph;
-        public double DynamicParagraph
-        {
-            get { return dynamicParagraph; }
-            set
-            {
-                SetProperty(ref dynamicParagraph, value);
-                Development += dynamicParagraph;
-            }
-        }
-
-        private double numberOfMergeFields;
-        public double NumberOfMergeFields
-        {
-            get { return numberOfMergeFields; }
-            set
-            {
-                SetProperty(ref numberOfMergeFields, value);
-                Development += numberOfMergeFields;
-            }
-        }
-
         private double development;
         public double Development
         {

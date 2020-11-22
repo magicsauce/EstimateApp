@@ -125,17 +125,6 @@
                                     HorizontalOptions="Start"
                                     Text="{Binding FieldsWithCustomValidation}" />
 
-                            <StackLayout IsVisible="{Binding OptionsVisible}">
-                                <Label StyleClass="FieldLabel">Number of Dynamic Paragraph</Label>
-                                <Entry StyleClass="FieldEntry"
-                                        HorizontalOptions="Start"
-                                        Text="{Binding DynamicParagraph}" />
-                     
-                                <Label StyleClass="FieldLabel">Number of Merge Fields</Label>
-                                <Entry StyleClass="FieldEntry"
-                                        HorizontalOptions="Start"
-                                        Text="{Binding NumberOfMergeFields}" />
-                            </StackLayout>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
