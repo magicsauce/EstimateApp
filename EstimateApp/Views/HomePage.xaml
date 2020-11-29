@@ -15,9 +15,11 @@
                          VerticalOptions="End">
 
                 <Label FontSize="25"
-                       TextColor="Black">Estimate</Label>
+                       TextColor="Black"
+                       FontAttributes="Bold">Estimate</Label>
                 <Label FontSize="25"
-                       TextColor="Gray">App</Label>
+                       TextColor="Gray"
+                       FontAttributes="None">App</Label>
 
             </StackLayout>
 
