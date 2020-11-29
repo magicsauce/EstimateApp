@@ -10,11 +10,371 @@ namespace EstimateApp.ViewModels
 {
     public class EformViewModel : BaseViewModel
     {
+        public ICommand RemoveTicketManagementCommand { get; private set; }
+        public ICommand AddTicketManagementCommand { get; private set; }
+
+        public ICommand RemoveSelfTestCommand { get; private set; }
+        public ICommand AddSelfTestCommand { get; private set; }
+
+        public ICommand RemovePeerReviewCommand { get; private set; }
+        public ICommand AddPeerReviewCommand { get; private set; }
+
+        public ICommand RemoveQACommand { get; private set; }
+        public ICommand AddQACommand { get; private set; }
+
+        public ICommand RemoveDeploymentCommand { get; private set; }
+        public ICommand AddDeploymentCommand { get; private set; }
+
+        public ICommand RemoveAdjustmentCommand { get; private set; }
+        public ICommand AddAdjustmentCommand { get; private set; }
+
         public EformViewModel()
         {
             Title = "Eform";
 
             SetDefaultValue();
+
+            RemoveTicketManagementCommand = new Command(RemoveTicketManagement);
+            AddTicketManagementCommand = new Command(AddTicketManagement);
+
+            RemoveSelfTestCommand = new Command(RemoveSelfTest);
+            AddSelfTestCommand = new Command(AddSelfTest);
+
+            RemovePeerReviewCommand = new Command(RemovePeerReview);
+            AddPeerReviewCommand = new Command(AddPeerReview);
+
+            RemoveQACommand = new Command(RemoveQA);
+            AddQACommand = new Command(AddQA);
+
+            RemoveDeploymentCommand = new Command(RemoveDeployment);
+            AddDeploymentCommand = new Command(AddDeployment);
+
+            RemoveAdjustmentCommand = new Command(RemoveAdjustment);
+            AddAdjustmentCommand = new Command(AddAdjustment);
+
+            IsAddButtonTMVisible = false;
+            IsRemoveButtonTMVisible = true;
+            IsRowTMVisible = true;
+
+            IsAddButtonSTVisible = false;
+            IsRemoveButtonSTVisible = true;
+            IsRowSTVisible = true;
+
+            IsAddButtonPRVisible = false;
+            IsRemoveButtonPRVisible = true;
+            IsRowPRVisible = true;
+
+            IsAddButtonQAVisible = false;
+            IsRemoveButtonQAVisible = true;
+            IsRowQAVisible = true;
+
+            IsAddButtonDeploymentVisible = false;
+            IsRemoveButtonDeploymentVisible = true;
+            IsRowDeploymentVisible = true;
+
+            IsAddButtonAdjustmentVisible = false;
+            IsRemoveButtonAdjustmentVisible = true;
+            IsRowAdjustmentVisible = true;
+        }
+
+        private bool isRemoveButtonAdjustmentVisible;
+        public bool IsRemoveButtonAdjustmentVisible
+        {
+            get { return isRemoveButtonAdjustmentVisible; }
+            set
+            {
+                SetProperty(ref isRemoveButtonAdjustmentVisible, value);
+            }
+        }
+
+        private bool isAddButtonAdjustmentVisible;
+        public bool IsAddButtonAdjustmentVisible
+        {
+            get { return isAddButtonAdjustmentVisible; }
+            set
+            {
+                SetProperty(ref isAddButtonAdjustmentVisible, value);
+            }
+        }
+
+        private bool isRowAdjustmentVisible;
+        public bool IsRowAdjustmentVisible
+        {
+            get { return isRowAdjustmentVisible; }
+            set
+            {
+                SetProperty(ref isRowAdjustmentVisible, value);
+            }
+        }
+
+        private void RemoveAdjustment()
+        {
+            IsRemoveButtonAdjustmentVisible = false;
+            IsAddButtonAdjustmentVisible = true;
+            IsRowAdjustmentVisible = false;
+
+            Adjustments = 0;
+            CalculateLOE();
+        }
+
+        private void AddAdjustment()
+        {
+            IsRemoveButtonAdjustmentVisible = true;
+            IsAddButtonAdjustmentVisible = false;
+            IsRowAdjustmentVisible = true;
+
+            CalculatePercentage();
+            CalculateLOE();
+        }
+
+        private bool isRemoveButtonDeploymentVisible;
+        public bool IsRemoveButtonDeploymentVisible
+        {
+            get { return isRemoveButtonDeploymentVisible; }
+            set
+            {
+                SetProperty(ref isRemoveButtonDeploymentVisible, value);
+            }
+        }
+
+        private bool isAddButtonDeploymentVisible;
+        public bool IsAddButtonDeploymentVisible
+        {
+            get { return isAddButtonDeploymentVisible; }
+            set
+            {
+                SetProperty(ref isAddButtonDeploymentVisible, value);
+            }
+        }
+
+        private bool isRowDeploymentVisible;
+        public bool IsRowDeploymentVisible
+        {
+            get { return isRowDeploymentVisible; }
+            set
+            {
+                SetProperty(ref isRowDeploymentVisible, value);
+            }
+        }
+
+        private void RemoveDeployment()
+        {
+            IsRemoveButtonDeploymentVisible = false;
+            IsAddButtonDeploymentVisible = true;
+            IsRowDeploymentVisible = false;
+
+            Deployment = 0;
+            CalculateLOE();
+        }
+
+        private void AddDeployment()
+        {
+            IsRemoveButtonDeploymentVisible = true;
+            IsAddButtonDeploymentVisible = false;
+            IsRowDeploymentVisible = true;
+
+            CalculatePercentage();
+            CalculateLOE();
+        }
+
+        private bool isRemoveButtonQAVisible;
+        public bool IsRemoveButtonQAVisible
+        {
+            get { return isRemoveButtonQAVisible; }
+            set
+            {
+                SetProperty(ref isRemoveButtonQAVisible, value);
+            }
+        }
+
+        private bool isAddButtonQAVisible;
+        public bool IsAddButtonQAVisible
+        {
+            get { return isAddButtonQAVisible; }
+            set
+            {
+                SetProperty(ref isAddButtonQAVisible, value);
+            }
+        }
+
+        private bool isRowQAVisible;
+        public bool IsRowQAVisible
+        {
+            get { return isRowQAVisible; }
+            set
+            {
+                SetProperty(ref isRowQAVisible, value);
+            }
+        }
+
+        private void RemoveQA()
+        {
+            IsRemoveButtonQAVisible = false;
+            IsAddButtonQAVisible = true;
+            IsRowQAVisible = false;
+
+            QaTest = 0;
+            CalculateLOE();
+        }
+
+        private void AddQA()
+        {
+            IsRemoveButtonQAVisible = true;
+            IsAddButtonQAVisible = false;
+            IsRowQAVisible = true;
+
+            CalculatePercentage();
+            CalculateLOE();
+        }
+
+        private bool isRemoveButtonPRVisible;
+        public bool IsRemoveButtonPRVisible
+        {
+            get { return isRemoveButtonPRVisible; }
+            set
+            {
+                SetProperty(ref isRemoveButtonPRVisible, value);
+            }
+        }
+
+        private bool isAddButtonPRVisible;
+        public bool IsAddButtonPRVisible
+        {
+            get { return isAddButtonPRVisible; }
+            set
+            {
+                SetProperty(ref isAddButtonPRVisible, value);
+            }
+        }
+
+        private bool isRowPRVisible;
+        public bool IsRowPRVisible
+        {
+            get { return isRowPRVisible; }
+            set
+            {
+                SetProperty(ref isRowPRVisible, value);
+            }
+        }
+
+        private void RemovePeerReview()
+        {
+            IsRemoveButtonPRVisible = false;
+            IsAddButtonPRVisible = true;
+            IsRowPRVisible = false;
+
+            PeerReview = 0;
+            CalculateLOE();
+        }
+
+        private void AddPeerReview()
+        {
+            IsRemoveButtonPRVisible = true;
+            IsAddButtonPRVisible = false;
+            IsRowPRVisible = true;
+
+            CalculatePercentage();
+            CalculateLOE();
+        }
+
+        private bool isRemoveButtonSTVisible;
+        public bool IsRemoveButtonSTVisible
+        {
+            get { return isRemoveButtonSTVisible; }
+            set
+            {
+                SetProperty(ref isRemoveButtonSTVisible, value);
+            }
+        }
+
+        private bool isAddButtonSTVisible;
+        public bool IsAddButtonSTVisible
+        {
+            get { return isAddButtonSTVisible; }
+            set
+            {
+                SetProperty(ref isAddButtonSTVisible, value);
+            }
+        }
+
+        private bool isRowSTVisible;
+        public bool IsRowSTVisible
+        {
+            get { return isRowSTVisible; }
+            set
+            {
+                SetProperty(ref isRowSTVisible, value);
+            }
+        }
+
+        private void AddSelfTest()
+        {
+            IsRemoveButtonSTVisible = true;
+            IsAddButtonSTVisible = false;
+            IsRowSTVisible = true;
+
+            CalculatePercentage();
+            CalculateLOE();
+        }
+
+        private void RemoveSelfTest()
+        {
+            IsRemoveButtonSTVisible = false;
+            IsAddButtonSTVisible = true;
+            IsRowSTVisible = false;
+
+            SelfTest = 0;
+            CalculateLOE();
+        }
+
+        private bool isRemoveButtonTMVisible;
+        public bool IsRemoveButtonTMVisible
+        {
+            get { return isRemoveButtonTMVisible; }
+            set
+            {
+                SetProperty(ref isRemoveButtonTMVisible, value);
+            }
+        }
+
+        private bool isAddButtonTMVisible;
+        public bool IsAddButtonTMVisible
+        {
+            get { return isAddButtonTMVisible; }
+            set
+            {
+                SetProperty(ref isAddButtonTMVisible, value);
+            }
+        }
+
+        private bool isRowTMVisible;
+        public bool IsRowTMVisible
+        {
+            get { return isRowTMVisible; }
+            set
+            {
+                SetProperty(ref isRowTMVisible, value);
+            }
+        }
+
+        private void RemoveTicketManagement()
+        {
+            IsRemoveButtonTMVisible = false;
+            IsAddButtonTMVisible = true;
+            IsRowTMVisible = false;
+
+            TicketManagement = 0;
+            CalculateLOE();
+        }
+
+        private void AddTicketManagement()
+        {
+            IsRemoveButtonTMVisible = true;
+            IsAddButtonTMVisible = false;
+            IsRowTMVisible = true;
+
+            CalculatePercentage();
+            CalculateLOE();
         }
 
         private void SetDefaultValue()
@@ -32,6 +392,7 @@ namespace EstimateApp.ViewModels
 
         private void CalculatePercentage()
         {
+            TicketManagement = minTicketManagement;
             SelfTest = minSelfTest + (.10 * Development);
             PeerReview = minPeerReview + (.10 * Development);
             QaTest = minQaTest + (.15 * Development);

@@ -52,6 +52,24 @@
             <Setter Property="FontSize"
                     Value="17" />
         </Style>
+        <Style TargetType="Button"
+               Class="AddButton">
+            <Setter Property="Text"
+                    Value="+" />
+            <Setter Property="TextColor"
+                    Value="Green" />
+            <Setter Property="BackgroundColor"
+                    Value="Transparent" />
+        </Style>
+        <Style TargetType="Button"
+               Class="RemoveButton">
+            <Setter Property="Text"
+                    Value="-" />
+            <Setter Property="TextColor"
+                    Value="Red" />
+            <Setter Property="BackgroundColor"
+                    Value="Transparent" />
+        </Style>
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -162,85 +180,200 @@
                                          HorizontalOptions="Start">
                                 <Label StyleClass="FieldLabel">Development</Label>
                                 <Entry StyleClass="FieldEntry"
-                                       Text="{Binding Development, StringFormat='{0:0.00}'}"/>
+                                        Text="{Binding Development, StringFormat='{0:0.00}'}"/>
                             </StackLayout>
 
-                            <StackLayout Grid.Row="1"
-                                         HorizontalOptions="Start">
+                            <StackLayout Grid.Row="1">
                                 <Label StyleClass="FieldLabel">Ticket Management</Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <Entry StyleClass="FieldEntry"
+                                <Button StyleClass="AddButton"
+                                        HeightRequest="40"
+                                        Command="{Binding AddTicketManagementCommand}"
+                                        IsVisible="{Binding IsAddButtonTMVisible}"/>
+                                
+                                <Grid IsVisible="{Binding IsRowTMVisible}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Grid.Column="0"
+                                            StyleClass="RemoveButton"
+                                            Command="{Binding RemoveTicketManagementCommand}"
+                                            IsVisible="{Binding IsRemoveButtonTMVisible}"/>
+                                    <Entry Grid.Column="1"
+                                           StyleClass="FieldEntry"
                                            Placeholder="Minimum"
                                            Text="{Binding MinTicketManagement}"/>
-                                    <Entry StyleClass="FieldEntryGrayBackground"
+                                    <Entry Grid.Column="2"
+                                           StyleClass="FieldEntryGrayBackground"
                                            Placeholder="Hours"
                                            Text="{Binding TicketManagement}"/>
-                                </StackLayout>
+                                </Grid>
                             </StackLayout>
 
-                            <StackLayout Grid.Row="2"
-                                         HorizontalOptions="Start">
+                            <StackLayout Grid.Row="2">
                                 <Label StyleClass="FieldLabel">Self Test</Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <Entry StyleClass="FieldEntry"
-                                       Placeholder="Minimum"
-                                       Text="{Binding MinSelfTest}" />
-                                    <Entry StyleClass="FieldEntryGrayBackground"
-                                       Placeholder="Hours"
-                                       Text="{Binding SelfTest}" />
-                                </StackLayout>
+                                <Button StyleClass="AddButton"
+                                        HeightRequest="40"
+                                        Command="{Binding AddSelfTestCommand}"
+                                        IsVisible="{Binding IsAddButtonSTVisible}"/>
+
+                                <Grid IsVisible="{Binding IsRowSTVisible}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Grid.Column="0"
+                                            StyleClass="RemoveButton"
+                                            Command="{Binding RemoveSelfTestCommand}"
+                                            IsVisible="{Binding IsRemoveButtonSTVisible}"/>
+                                    <Entry Grid.Column="1"
+                                           StyleClass="FieldEntry"
+                                           Placeholder="Minimum"
+                                           Text="{Binding MinSelfTest}"/>
+                                    <Entry Grid.Column="2"
+                                           StyleClass="FieldEntryGrayBackground"
+                                           Placeholder="Hours"
+                                           Text="{Binding SelfTest}"/>
+                                </Grid>
                             </StackLayout>
 
-                            <StackLayout Grid.Row="3"
-                                         HorizontalOptions="Start">
+                            <StackLayout Grid.Row="3">
                                 <Label StyleClass="FieldLabel">Peer Review</Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <Entry StyleClass="FieldEntry"
-                                       Placeholder="Minimum"
-                                       Text="{Binding MinPeerReview}" />
-                                    <Entry StyleClass="FieldEntryGrayBackground"
-                                       Placeholder="Hours"
-                                       Text="{Binding PeerReview}" />
-                                </StackLayout>
+                                <Button StyleClass="AddButton"
+                                        HeightRequest="40"
+                                        Command="{Binding AddPeerReviewCommand}"
+                                        IsVisible="{Binding IsAddButtonPRVisible}"/>
+
+                                <Grid IsVisible="{Binding IsRowPRVisible}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Grid.Column="0"
+                                            StyleClass="RemoveButton"
+                                            Command="{Binding RemovePeerReviewCommand}"
+                                            IsVisible="{Binding IsRemoveButtonPRVisible}"/>
+                                    <Entry Grid.Column="1"
+                                           StyleClass="FieldEntry"
+                                           Placeholder="Minimum"
+                                           Text="{Binding MinPeerReview}"/>
+                                    <Entry Grid.Column="2"
+                                           StyleClass="FieldEntryGrayBackground"
+                                           Placeholder="Hours"
+                                           Text="{Binding PeerReview}"/>
+                                </Grid>
+                                
                             </StackLayout>
 
-                            <StackLayout Grid.Row="4"
-                                         HorizontalOptions="Start">
+                            <StackLayout Grid.Row="4">
                                 <Label StyleClass="FieldLabel">QA Test</Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <Entry StyleClass="FieldEntry"
-                                       Placeholder="Minimum"
-                                       Text="{Binding MinQaTest}" />
-                                    <Entry StyleClass="FieldEntryGrayBackground"
-                                       Placeholder="Hours"
-                                       Text="{Binding QaTest}" />
-                                </StackLayout>
+                                <Button StyleClass="AddButton"
+                                        HeightRequest="40"
+                                        Command="{Binding AddQACommand}"
+                                        IsVisible="{Binding IsAddButtonQAVisible}"/>
+
+                                <Grid IsVisible="{Binding IsRowQAVisible}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Grid.Column="0"
+                                            StyleClass="RemoveButton"
+                                            Command="{Binding RemoveQACommand}"
+                                            IsVisible="{Binding IsRemoveButtonQAVisible}"/>
+                                    <Entry Grid.Column="1"
+                                           StyleClass="FieldEntry"
+                                           Placeholder="Minimum"
+                                           Text="{Binding MinQaTest}"/>
+                                    <Entry Grid.Column="2"
+                                           StyleClass="FieldEntryGrayBackground"
+                                           Placeholder="Hours"
+                                           Text="{Binding QaTest}"/>
+                                </Grid>
                             </StackLayout>
 
-                            <StackLayout Grid.Row="5"
-                                         HorizontalOptions="Start">
+                            <StackLayout Grid.Row="5">
                                 <Label StyleClass="FieldLabel">Deployment</Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <Entry StyleClass="FieldEntry"
-                                       Placeholder="Minimum"
-                                       Text="{Binding MinDeployment}" />
-                                    <Entry StyleClass="FieldEntryGrayBackground"
-                                       Placeholder="Hours"
-                                       Text="{Binding Deployment}" />
-                                </StackLayout>
+                                <Button StyleClass="AddButton"
+                                        HeightRequest="40"
+                                        Command="{Binding AddDeploymentCommand}"
+                                        IsVisible="{Binding IsAddButtonDeploymentVisible}"/>
+
+                                <Grid IsVisible="{Binding IsRowDeploymentVisible}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Grid.Column="0"
+                                            StyleClass="RemoveButton"
+                                            Command="{Binding RemoveDeploymentCommand}"
+                                            IsVisible="{Binding IsRemoveButtonDeploymentVisible}"/>
+                                    <Entry Grid.Column="1"
+                                           StyleClass="FieldEntry"
+                                           Placeholder="Minimum"
+                                           Text="{Binding MinDeployment}"/>
+                                    <Entry Grid.Column="2"
+                                           StyleClass="FieldEntryGrayBackground"
+                                           Placeholder="Hours"
+                                           Text="{Binding Deployment}"/>
+                                </Grid>
                             </StackLayout>
 
-                            <StackLayout Grid.Row="6"
-                                         HorizontalOptions="Start">
+                            <StackLayout Grid.Row="6">
                                 <Label StyleClass="FieldLabel">Adjustments</Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <Entry StyleClass="FieldEntry"
-                                       Placeholder="Minimum"
-                                       Text="{Binding MinAdjustments}" />
-                                    <Entry StyleClass="FieldEntryGrayBackground"
-                                       Placeholder="Hours"
-                                       Text="{Binding Adjustments}" />
-                                </StackLayout>
+                                <Button StyleClass="AddButton"
+                                        HeightRequest="40"
+                                        Command="{Binding AddAdjustmentCommand}"
+                                        IsVisible="{Binding IsAddButtonAdjustmentVisible}"/>
+
+                                <Grid IsVisible="{Binding IsRowAdjustmentVisible}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Grid.Column="0"
+                                            StyleClass="RemoveButton"
+                                            Command="{Binding RemoveAdjustmentCommand}"
+                                            IsVisible="{Binding IsRemoveButtonAdjustmentVisible}"/>
+                                    <Entry Grid.Column="1"
+                                           StyleClass="FieldEntry"
+                                           Placeholder="Minimum"
+                                           Text="{Binding MinAdjustments}"/>
+                                    <Entry Grid.Column="2"
+                                           StyleClass="FieldEntryGrayBackground"
+                                           Placeholder="Hours"
+                                           Text="{Binding Adjustments}"/>
+                                </Grid>
                             </StackLayout>
                         </Grid>
                     </Frame>
